@@ -1,0 +1,128 @@
+{
+  "entities": {
+    "TeamMember": {
+      "title": "TeamMember",
+      "description": "A member of the ecommerce team.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "isAdmin": { "type": "boolean" }
+      },
+      "required": ["id", "name", "role", "email"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "An ecommerce task or action item.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "description": { "type": "string" },
+        "owner": { "type": "string" },
+        "channel": { "type": "string" },
+        "function": { "type": "string" },
+        "priority": { "type": "string" },
+        "status": { "type": "string" },
+        "startDate": { "type": "string" },
+        "deadline": { "type": "string" },
+        "blocker": { "type": "boolean" },
+        "remarks": { "type": "string" }
+      },
+      "required": ["id", "description", "owner", "channel", "function", "priority", "status", "startDate", "deadline"]
+    },
+    "MoM": {
+      "title": "MoM",
+      "description": "Minutes of Meeting record.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "meetingName": { "type": "string" },
+        "channel": { "type": "string" },
+        "keyDecisions": { "type": "string" },
+        "actionItems": { "type": "string" },
+        "owner": { "type": "string" },
+        "deadline": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "date", "meetingName", "channel", "keyDecisions", "actionItems", "owner", "deadline", "status"]
+    },
+    "KPI": {
+      "title": "KPI",
+      "description": "Key Performance Indicators for a channel.",
+      "type": "object",
+      "properties": {
+        "channel": { "type": "string" },
+        "salesTarget": { "type": "number" },
+        "salesAchieved": { "type": "number" },
+        "adsSpend": { "type": "number" },
+        "roas": { "type": "number" },
+        "growth": { "type": "number" }
+      },
+      "required": ["channel", "salesTarget", "salesAchieved", "adsSpend", "roas", "growth"]
+    },
+    "MonthlyPerformance": {
+      "title": "MonthlyPerformance",
+      "description": "Performance metrics for a specific month and channel.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "month": { "type": "string" },
+        "channel": { "type": "string" },
+        "salesTarget": { "type": "number" },
+        "salesActual": { "type": "number" },
+        "adSpendPlanned": { "type": "number" },
+        "adSpendActual": { "type": "number" },
+        "salesLastYear": { "type": "number" },
+        "adSpendLastYear": { "type": "number" }
+      },
+      "required": ["id", "month", "channel", "salesTarget", "salesActual", "adSpendPlanned", "adSpendActual"]
+    },
+    "WeeklyPlan": {
+      "title": "WeeklyPlan",
+      "description": "A plan for a specific week.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "week": { "type": "string" },
+        "focusArea": { "type": "string" },
+        "keyTasks": { "type": "string" },
+        "owner": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "week", "focusArea", "keyTasks", "owner", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "TeamMember",
+      "description": "User profiles and roles."
+    },
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Ecommerce tasks."
+    },
+    "/moms/{momId}": {
+      "schema": "MoM",
+      "description": "Meeting minutes."
+    },
+    "/kpis/{channel}": {
+      "schema": "KPI",
+      "description": "Channel KPIs."
+    },
+    "/monthlyPerformance/{perfId}": {
+      "schema": "MonthlyPerformance",
+      "description": "Monthly performance records."
+    },
+    "/weeklyPlans/{planId}": {
+      "schema": "WeeklyPlan",
+      "description": "Weekly focus areas and tasks."
+    },
+    "/test/connection": {
+      "schema": "object",
+      "description": "Connection test document."
+    }
+  }
+}
